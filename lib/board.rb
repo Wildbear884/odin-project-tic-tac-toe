@@ -1,8 +1,18 @@
 module TicTacToe
-  # This is a description of the board class
+  # Board is how the tic tac toe boards are created.
   class Board
-    def self.test
-      puts "I'm from board.rb"
+    def initialize
+      @board = [
+        %w[_ _ _],
+        %w[_ _ _],
+        %w[_ _ _]
+      ]
+    end
+
+    def display
+      @board.each do |a|
+        puts "#{a[0]} #{a[1]} #{a[2]}"
+      end
     end
   end
 end

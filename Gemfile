@@ -4,4 +4,4 @@ source "https://rubygems.org"
 
 gem "rubocop", "~> 1.86"
 
-gem "rubocop-performance", require: false
+gem "rubocop-performance", require: true
