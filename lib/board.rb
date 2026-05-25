@@ -14,5 +14,25 @@ module TicTacToe
         puts "#{a[0]} #{a[1]} #{a[2]}"
       end
     end
+
+    def place(piece, placement)
+      loc = location(placement)
+      @board[loc.fetch(:row)][loc.fetch(:col)] = piece
+    end
+
+    private
+
+    def location(loc)
+      place = {}
+      if loc.include?("middle") || loc.include?("center")
+        place[:row] = 1
+        place[:col] = 1
+      end
+      place[:row] = 0 if loc.include?("top")
+      place[:row] = 2 if loc.include?("bottom")
+      place[:col] = 0 if loc.include?("left")
+      place[:col] = 2 if loc.include?("right")
+      place
+    end
   end
 end
