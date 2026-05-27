@@ -14,38 +14,18 @@ module TicTacToe
     ].freeze
 
     def initialize
-      @board = [
-        %w[_ _ _],
-        %w[_ _ _],
-        %w[_ _ _]
-      ]
+      @board = %w[1 2 3 4 5 6 7 8 9]
     end
 
     def display
-      @board.each do |a|
-        puts "#{a[0]} #{a[1]} #{a[2]}"
-      end
+      [0, 3, 6].each { |n| puts @board[n, 3].join(" ") }
     end
 
     def place(piece, placement)
-      loc = location(placement)
-      @board[loc.fetch(:row)][loc.fetch(:col)] = piece
+      @board[placement_name_to_number(placement)] = piece
     end
 
     private
-
-    def location(loc)
-      place = {}
-      if loc.include?("middle") || loc.include?("center")
-        place[:row] = 1
-        place[:col] = 1
-      end
-      place[:row] = 0 if loc.include?("top")
-      place[:row] = 2 if loc.include?("bottom")
-      place[:col] = 0 if loc.include?("left")
-      place[:col] = 2 if loc.include?("right")
-      place
-    end
 
     def placement_name_to_number(placement_text)
       number = 0
