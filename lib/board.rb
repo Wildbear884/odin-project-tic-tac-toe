@@ -15,14 +15,17 @@ module TicTacToe
 
     def initialize
       @board = %w[_ _ _ _ _ _ _ _ _ _]
+      @empty_spaces = [0, 1, 2, 3, 4, 5, 6, 7, 8]
     end
 
     def display
       [0, 3, 6].each { |n| puts @board[n, 3].join(" ") }
     end
 
-    def place(piece, placement)
-      @board[placement_name_to_number(placement)] = piece
+    def place(piece)
+      placement_number = placement_name_to_number(placement)
+      @empty_spaces[placement_number] = ""
+      @board[placement_number] = piece
     end
 
     private
@@ -35,6 +38,51 @@ module TicTacToe
         break if PLACEMENT_NAMES[e].include?(placement_text)
       end
       number
+    end
+
+    def placement
+      place = ""
+      until valid_placement?(place)
+        puts "Where would you like to place?"
+        place = gets.chomp.downcase
+        valid_placement_names if place == "valid placement names"
+        display if place == "board"
+        puts invalid_placement_text(place) unless placement_or_command?(place)
+      end
+      place
+    end
+
+    def valid_placement?(place)
+      valid_placement_name?(place) && space_empty?(place)
+    end
+
+    def invalid_placement_text(place)
+      if !valid_placement_name?(place)
+        <<~INVALID_TEXT
+          That is not a valid placement name.
+          Type “valid placement names” to see all valid placement names.
+        INVALID_TEXT
+      elsif !space_empty?(place)
+        "That spot is already occupied.\nType “board” to view the board"
+      end
+    end
+
+    def space_empty?(place)
+      @empty_spaces.include?(placement_name_to_number(place))
+    end
+
+    def valid_placement_name?(place)
+      PLACEMENT_NAMES.flatten.include?(place)
+    end
+
+    def valid_placement_names
+      puts "\nThese are all the valid placement names:"
+      PLACEMENT_NAMES.each { |a| puts a.join(", ") }
+    end
+
+    def placement_or_command?(input)
+      valid_placement?(input) ||
+        ["board", "valid placement names"].include?(input)
     end
   end
 end
