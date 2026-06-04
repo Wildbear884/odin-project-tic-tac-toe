@@ -33,9 +33,10 @@ module TicTacToe
     def placement_name_to_number(placement_text)
       number = 0
 
-      PLACEMENT_NAMES.each_with_index do |_a, e|
-        number = e
-        break if PLACEMENT_NAMES[e].include?(placement_text)
+      PLACEMENT_NAMES.each do |a|
+        break if a.include?(placement_text)
+
+        number += 1
       end
       number
     end
