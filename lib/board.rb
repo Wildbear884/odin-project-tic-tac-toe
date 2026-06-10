@@ -13,6 +13,17 @@ module TicTacToe
       ["bottom right", "right bottom", "9"]
     ].freeze
 
+    ENDING_COMBINATIONS = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6]
+    ].freeze
+
     def initialize
       @board = %w[_ _ _ _ _ _ _ _ _]
       @empty_spaces = [0, 1, 2, 3, 4, 5, 6, 7, 8]
@@ -88,6 +99,16 @@ module TicTacToe
     def placement_or_command?(input)
       valid_placement?(input) ||
         ["board", "valid placement names"].include?(input)
+    end
+
+    def winner?
+      return false unless @board.count("X") >= 3 || @board.count("O") >= 3
+
+      ENDING_COMBINATIONS.each do |a|
+        selection = @board.fetch_values(a[0], a[1], a[2])
+        return true if selection.all?("X") || selection.all?("O")
+      end
+      false
     end
   end
 end
