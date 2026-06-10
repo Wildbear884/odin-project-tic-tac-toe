@@ -14,7 +14,7 @@ module TicTacToe
     ].freeze
 
     def initialize
-      @board = %w[_ _ _ _ _ _ _ _ _ _]
+      @board = %w[_ _ _ _ _ _ _ _ _]
       @empty_spaces = [0, 1, 2, 3, 4, 5, 6, 7, 8]
     end
 
@@ -26,6 +26,10 @@ module TicTacToe
       placement_number = placement_name_to_number(placement)
       @empty_spaces[placement_number] = ""
       @board[placement_number] = piece
+    end
+
+    def full?
+      @board.none?("_")
     end
 
     private
