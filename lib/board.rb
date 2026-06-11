@@ -1,5 +1,7 @@
 module TicTacToe
   # Board is how the tic tac toe boards are created.
+  # They are used to store the board, place pieces, check if the board is full,
+  # and see there is a winner.
   class Board
     PLACEMENT_NAMES = [
       ["top left", "left top", "1"],

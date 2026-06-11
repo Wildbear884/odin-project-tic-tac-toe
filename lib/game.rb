@@ -1,6 +1,6 @@
 module TicTacToe
-  # Games are used to play the game, store the players, and the board.
-  # And play the game itself.
+  # Games are used to play the game, store the players, the board, and to play
+  # the game itself and declare a winner.
   class Game
     def initialize
       @players = [TicTacToe::Player.new("X"), TicTacToe::Player.new("O")]
