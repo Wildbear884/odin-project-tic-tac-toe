@@ -43,6 +43,16 @@ module TicTacToe
       @board.none?("_")
     end
 
+    def winner?
+      return false unless @board.count("X") >= 3 || @board.count("O") >= 3
+
+      ENDING_COMBINATIONS.each do |a|
+        selection = @board.fetch_values(a[0], a[1], a[2])
+        return true if selection.all?("X") || selection.all?("O")
+      end
+      false
+    end
+
     private
 
     def placement_name_to_number(placement_text)
@@ -59,7 +69,6 @@ module TicTacToe
     def placement
       place = ""
       until valid_placement?(place)
-        puts "Where would you like to place?"
         place = gets.chomp.downcase
         valid_placement_names if place == "valid placement names"
         display if place == "board"
@@ -99,16 +108,6 @@ module TicTacToe
     def placement_or_command?(input)
       valid_placement?(input) ||
         ["board", "valid placement names"].include?(input)
-    end
-
-    def winner?
-      return false unless @board.count("X") >= 3 || @board.count("O") >= 3
-
-      ENDING_COMBINATIONS.each do |a|
-        selection = @board.fetch_values(a[0], a[1], a[2])
-        return true if selection.all?("X") || selection.all?("O")
-      end
-      false
     end
   end
 end

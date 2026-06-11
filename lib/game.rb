@@ -9,6 +9,19 @@ module TicTacToe
       @player_order = [@start_player, second_player]
     end
 
+    def play
+      current_player_order = @player_order.dup
+      until game_over?
+        current_player = current_player_order[0]
+        puts "#{current_player.name}'s placement?"
+        @board.place(current_player.piece)
+        @board.display
+        current_player_order.rotate!
+      end
+      @winner = current_player_order.last
+      game_ending
+    end
+
     private
 
     def starting_player
@@ -29,6 +42,12 @@ module TicTacToe
 
     def game_over?
       @board.winner? || @board.full?
+    end
+
+    def game_ending
+      puts "#{@winner.name} wins!" if @board.winner?
+      puts "It's a tie!" unless @board.winner?
+      puts "Thanks for playing #{@players[0].name} and #{@players[1].name}!"
     end
   end
 end
