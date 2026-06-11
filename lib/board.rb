@@ -9,7 +9,7 @@ module TicTacToe
       %w[middle center 5],
       ["middle right", "right middle", "center right", "right center", "6"],
       ["bottom left", "left bottom", "7"],
-      ["bottom middle", "middle bottom", "bottom center", "middle bottom", "8"],
+      ["bottom middle", "middle bottom", "bottom center", "center bottom", "8"],
       ["bottom right", "right bottom", "9"]
     ].freeze
 
