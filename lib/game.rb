@@ -26,5 +26,9 @@ module TicTacToe
     def second_player
       @start_player == @players.first ? @players.last : @players.first
     end
+
+    def game_over?
+      @board.winner? || @board.full?
+    end
   end
 end
