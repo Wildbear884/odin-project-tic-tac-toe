@@ -12,15 +12,15 @@ puts <<~WELCOME_TEXT
   The starting player places their piece in an empty space on a three by three
   grid.
 
-  The next player places their piece in an empty place on the grid.
+  The next player places their piece in an empty space on the grid.
 
   Players continue taking turns until one player wins or the board is full.
 
   Players can win by having three of their pieces in a row that is either
   horizontal, vertical or diagonal.
 
-  If the board is full and no player has gotten three pieces in a row then the
-  game ends in a tie.
+  If the board is full and no player has gotten three of their pieces in a row
+  then the game ends in a tie.
 
   All right that's it, have fun playing!
 
